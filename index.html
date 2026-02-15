@@ -1,147 +1,1554 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Solène Kvällsrén — Character Sheet</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 1rem;
-      background: #f6f6f6;
-      line-height: 1.6;
-    }
-    h1 {
-      font-size: 2.5rem;
-      color: #333;
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    section {
-      background: white;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,.1);
-    }
-    h2 {
-      color: #4CAF50; /* A nice green */
-      border-bottom: 2px solid #4CAF50;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    ul {
-      list-style: disc;
-      padding-left: 20px;
-    }
-    li {
-      margin-bottom: 0.5rem;
-    }
-    strong {
-      color: #555;
-    }
-    .spell-notes {
-      font-style: italic;
-      color: #666;
-      font-size: 0.9em;
-    }
-    .stat-block {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    .stat-block li {
-      background: #e8f5e9; /* Light green background for stats */
-      padding: 8px;
-      border-radius: 4px;
-      text-align: center;
-    }
-    .feature-description {
-      font-size: 0.9em;
-      color: #666;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solène Kvällsrén — D&D Character Sheet</title>
+<style>
+/* ═══════════════════════════════════════════
+   AZTEC-INSPIRED D&D CHARACTER SHEET
+   ═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --gold: #D4A843;
+  --gold-light: #F0D78C;
+  --gold-dark: #A67C2E;
+  --obsidian: #1a1a1a;
+  --stone: #2a2520;
+  --stone-light: #3d3630;
+  --jade: #2E8B6E;
+  --jade-dark: #1a5c45;
+  --turquoise: #40B5AD;
+  --terracotta: #C75B39;
+  --terracotta-dark: #963d24;
+  --parchment: #f5e6c8;
+  --parchment-dark: #e0cdaa;
+  --text-light: #f0e8d8;
+  --text-muted: #b0a89a;
+  --shadow: rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--obsidian);
+  color: var(--text-light);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Aztec border pattern - top */
+body::before {
+  content: '';
+  display: block;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--gold) 0px, var(--gold) 12px,
+    var(--terracotta) 12px, var(--terracotta) 24px,
+    var(--jade) 24px, var(--jade) 36px,
+    var(--turquoise) 36px, var(--turquoise) 48px
+  );
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ─── HEADER ─── */
+.header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, var(--stone) 0%, var(--stone-light) 50%, var(--stone) 100%);
+  border: 2px solid var(--gold-dark);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆';
+  display: block;
+  color: var(--gold);
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.header::after {
+  content: '◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆ ◇ ◆';
+  display: block;
+  color: var(--gold);
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  margin-top: 1rem;
+  opacity: 0.6;
+}
+
+.portrait {
+  width: 180px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 3px solid var(--gold);
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.char-name {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--gold);
+  text-shadow: 0 2px 8px rgba(212,168,67,0.3);
+  margin-bottom: 0.25rem;
+}
+
+.char-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  color: var(--turquoise);
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.char-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* ─── SECTIONS ─── */
+.section {
+  background: var(--stone);
+  border: 1px solid var(--gold-dark);
+  border-radius: 10px;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+
+.section-header {
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.section-header h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--obsidian);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.section-header .toggle-icon {
+  font-size: 1.2rem;
+  color: var(--obsidian);
+  transition: transform 0.3s;
+}
+
+.section.collapsed .toggle-icon {
+  transform: rotate(-90deg);
+}
+
+.section.collapsed .section-body {
+  display: none;
+}
+
+.section-body {
+  padding: 1rem;
+}
+
+/* ─── AZTEC DIVIDER ─── */
+.aztec-divider {
+  text-align: center;
+  color: var(--gold-dark);
+  font-size: 0.6rem;
+  letter-spacing: 6px;
+  padding: 0.5rem 0;
+  opacity: 0.5;
+}
+
+/* ─── ABILITY SCORES ─── */
+.ability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 500px) {
+  .ability-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.ability-card {
+  background: var(--stone-light);
+  border: 1px solid var(--gold-dark);
+  border-radius: 8px;
+  text-align: center;
+  padding: 0.75rem 0.5rem;
+  position: relative;
+}
+
+.ability-card .ability-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.ability-card .ability-score {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--text-light);
+}
+
+.ability-card .ability-mod {
+  font-size: 1rem;
+  color: var(--turquoise);
+  font-weight: 600;
+}
+
+.ability-card .ability-skills {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.ability-card .ability-skills .skill-prof {
+  color: var(--jade);
+}
+
+.ability-card .ability-skills .skill-expert {
+  color: var(--gold);
+}
+
+/* ─── COMBAT STATS (editable HP etc) ─── */
+.combat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.combat-stat {
+  background: var(--stone-light);
+  border: 1px solid var(--gold-dark);
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.combat-stat .stat-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.25rem;
+}
+
+.combat-stat .stat-value {
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.combat-stat .stat-detail {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Editable inputs */
+.editable-input {
+  background: transparent;
+  border: 1px dashed var(--gold-dark);
+  border-radius: 4px;
+  color: var(--text-light);
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  width: 80px;
+  padding: 2px;
+  outline: none;
+}
+
+.editable-input:focus {
+  border-color: var(--turquoise);
+  box-shadow: 0 0 8px rgba(64,181,173,0.3);
+}
+
+.hp-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.hp-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-dark);
+  background: var(--stone);
+  color: var(--gold);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hp-btn:active { background: var(--gold-dark); color: var(--obsidian); }
+
+/* ─── SAVING THROWS ─── */
+.save-list, .prof-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 6px;
+}
+
+.save-item, .prof-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.save-item .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  flex-shrink: 0;
+}
+
+.save-item .dot.filled { background: var(--gold); }
+.save-item .bonus { color: var(--turquoise); font-weight: 600; margin-left: auto; }
+
+/* ─── SKILLS TABLE ─── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 4px;
+}
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.skill-row:nth-child(odd) { background: rgba(255,255,255,0.02); }
+
+.skill-row .skill-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.skill-row .skill-icon.none { border: 1px solid var(--text-muted); }
+.skill-row .skill-icon.prof { background: var(--jade); }
+.skill-row .skill-icon.expert { background: var(--gold); border: 1px solid var(--gold-light); }
+
+.skill-row .skill-name { flex: 1; }
+.skill-row .skill-ability { color: var(--text-muted); font-size: 0.75rem; }
+.skill-row .skill-bonus { color: var(--turquoise); font-weight: 600; min-width: 30px; text-align: right; }
+
+.skill-legend {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.skill-legend span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ─── FEATURES ─── */
+.feature-card {
+  background: var(--stone-light);
+  border-left: 3px solid var(--gold-dark);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card .feature-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+
+.feature-card .feature-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.feature-card .feature-flavor {
+  font-size: 0.8rem;
+  color: var(--turquoise);
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+/* ─── SPELL SLOTS ─── */
+.spell-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.slot-group {
+  background: var(--stone-light);
+  border: 1px solid var(--gold-dark);
+  border-radius: 8px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.slot-group .slot-level {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.slot-dots {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.slot-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slot-dot.used {
+  background: var(--gold);
+  box-shadow: 0 0 6px rgba(212,168,67,0.4);
+}
+
+.slot-dot:hover {
+  border-color: var(--turquoise);
+}
+
+/* ─── SPELL CARDS ─── */
+.spell-level-group {
+  margin-bottom: 1rem;
+}
+
+.spell-level-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--turquoise);
+  border-bottom: 1px solid var(--stone-light);
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.spell-card {
+  background: var(--stone-light);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.spell-card:hover, .spell-card:active {
+  border-left: 3px solid var(--turquoise);
+}
+
+.spell-card .spell-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.spell-card .spell-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  color: var(--obsidian);
+  background: var(--turquoise);
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.spell-card .spell-details {
+  display: none;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.spell-card.expanded .spell-details {
+  display: block;
+}
+
+.spell-card .spell-meta {
+  font-size: 0.75rem;
+  color: var(--jade);
+  margin-bottom: 0.25rem;
+}
+
+.spell-card .spell-flavor {
+  font-style: italic;
+  color: var(--turquoise);
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+}
+
+/* ─── EQUIPMENT ─── */
+.equip-item {
+  display: flex;
+  gap: 10px;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.85rem;
+}
+
+.equip-item:last-child { border-bottom: none; }
+
+.equip-item .equip-icon { font-size: 1.1rem; flex-shrink: 0; }
+.equip-item .equip-name { font-weight: 600; color: var(--gold-light); }
+.equip-item .equip-rarity { font-size: 0.7rem; color: var(--terracotta); text-transform: uppercase; }
+.equip-item .equip-desc { color: var(--text-muted); font-size: 0.8rem; }
+
+/* ─── BACKSTORY ─── */
+.backstory-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.backstory-text strong { color: var(--gold-light); }
+
+.quote-block {
+  border-left: 3px solid var(--turquoise);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: var(--turquoise);
+  font-size: 0.95rem;
+}
+
+/* ─── DEATH SAVES ─── */
+.death-saves {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.death-save-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.death-save-group .ds-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  width: 30px;
+}
+
+.ds-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ds-dot.success { border: 2px solid var(--jade); }
+.ds-dot.success.filled { background: var(--jade); }
+.ds-dot.fail { border: 2px solid var(--terracotta); }
+.ds-dot.fail.filled { background: var(--terracotta); }
+
+/* ─── NOTES ─── */
+.notes-area {
+  width: 100%;
+  min-height: 100px;
+  background: var(--stone-light);
+  border: 1px solid var(--gold-dark);
+  border-radius: 6px;
+  color: var(--text-light);
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.85rem;
+  padding: 0.75rem;
+  resize: vertical;
+  outline: none;
+}
+
+.notes-area:focus {
+  border-color: var(--turquoise);
+}
+
+/* ─── RESET BUTTON ─── */
+.reset-bar {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.reset-btn {
+  background: var(--terracotta-dark);
+  color: var(--text-light);
+  border: 1px solid var(--terracotta);
+  border-radius: 6px;
+  padding: 0.5rem 1.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reset-btn:hover { background: var(--terracotta); }
+
+/* ─── FOOTER ─── */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
+
+/* Aztec bottom border */
+.footer::after {
+  content: '';
+  display: block;
+  height: 8px;
+  margin-top: 1rem;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--gold) 0px, var(--gold) 12px,
+    var(--terracotta) 12px, var(--terracotta) 24px,
+    var(--jade) 24px, var(--jade) 36px,
+    var(--turquoise) 36px, var(--turquoise) 48px
+  );
+  border-radius: 4px;
+}
+</style>
 </head>
 <body>
-  <h1>Solène Kvällsrén</h1>
-  <p style="text-align:center; color: #777;">"Sol" (Half-Elf Glamour Bard 10 / Arcane Trickster 5) | Level 15 | Neutral Good | "Evening Reborn"</p>
 
-  <section>
-    <h2>Core Stats</h2>
-    <div class="stat-block">
-      <ul><li><strong>STR:</strong> 13 (+1)</li><li><strong>DEX:</strong> 20 (+5)</li><li><strong>CON:</strong> 18 (+4)</li><li><strong>INT:</strong> 15 (+2)</li><li><strong>WIS:</strong> 15 (+2)</li><li><strong>CHA:</strong> 20 (+5)</li></ul>
+<div class="container">
+
+<!-- ═══════ HEADER ═══════ -->
+<div class="header">
+  <img src="sol-portrait-small.png" alt="Solène Kvällsrén" class="portrait">
+  <div class="char-name">Solène Kvällsrén</div>
+  <div class="char-subtitle">✦ "Sol" ✦ Evening Reborn ✦</div>
+  <div class="char-meta">
+    Half-Elf · Glamour Bard 10 / Arcane Trickster 5 · Level 15 · Neutral Good
+  </div>
+</div>
+
+<!-- ═══════ COMBAT STATS ═══════ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>⚔ Combat Stats</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+    <div class="combat-grid">
+      <div class="combat-stat">
+        <div class="stat-label">Hit Points</div>
+        <div class="hp-controls">
+          <button class="hp-btn" onclick="adjustHP(-1)">−</button>
+          <input type="number" id="currentHP" class="editable-input" value="127" onchange="saveState()">
+          <span style="color:var(--text-muted)">/</span>
+          <input type="number" id="maxHP" class="editable-input" value="127" style="width:60px" onchange="saveState()">
+          <button class="hp-btn" onclick="adjustHP(1)">+</button>
+        </div>
+        <div class="stat-detail">Tap ± or type directly</div>
+      </div>
+      <div class="combat-stat">
+        <div class="stat-label">Temp HP</div>
+        <input type="number" id="tempHP" class="editable-input" value="0" onchange="saveState()">
+        <div class="stat-detail">From Mantle of Inspiration, etc.</div>
+      </div>
+      <div class="combat-stat">
+        <div class="stat-label">Armor Class</div>
+        <div class="stat-value">17</div>
+        <div class="stat-detail">Studded Leather + DEX</div>
+      </div>
+      <div class="combat-stat">
+        <div class="stat-label">Initiative</div>
+        <div class="stat-value">+5</div>
+        <div class="stat-detail">DEX modifier</div>
+      </div>
+      <div class="combat-stat">
+        <div class="stat-label">Speed</div>
+        <div class="stat-value">30 ft</div>
+        <div class="stat-detail">Standard movement</div>
+      </div>
+      <div class="combat-stat">
+        <div class="stat-label">Prof Bonus</div>
+        <div class="stat-value">+5</div>
+        <div class="stat-detail">Level 15</div>
+      </div>
+      <div class="combat-stat">
+        <div class="stat-label">Spell Save DC</div>
+        <div class="stat-value">18</div>
+        <div class="stat-detail">8 + Prof + CHA</div>
+      </div>
+      <div class="combat-stat">
+        <div class="stat-label">Spell Attack</div>
+        <div class="stat-value">+10</div>
+        <div class="stat-detail">Prof + CHA</div>
+      </div>
+      <div class="combat-stat">
+        <div class="stat-label">Passive Perception</div>
+        <div class="stat-value">17</div>
+        <div class="stat-detail">10 + Perception</div>
+      </div>
+      <div class="combat-stat">
+        <div class="stat-label">Sneak Attack</div>
+        <div class="stat-value">3d6</div>
+        <div class="stat-detail">Advantage or ally adjacent</div>
+      </div>
     </div>
-    <ul>
-      <li><strong>Armor Class:</strong> 17 (Studded Leather + Dex)</li>
-      <li><strong>Hit Points:</strong> 127</li>
-      <li><strong>Speed:</strong> 30 ft</li>
-      <li><strong>Initiative:</strong> +5</li>
-      <li><strong>Passive Perception:</strong> 17</li>
-      <li><strong>Spell Save DC:</strong> 18</li>
-      <li><strong>Spell Attack Bonus:</strong> +10</li>
-    </ul>
-  </section>
 
-  <section>
-    <h2>Class Features</h2>
-    <ul>
-      <li><strong>Bardic Inspiration (d10):</strong> Grant allies a d10 for checks, attacks, or saves. (Uses = Cha mod: 4/rest)</li>
-      <li class="feature-description">The event planner handing out exactly the right resource.</li>
-      <li><strong>Mantle of Inspiration:</strong> Grant temp HP and bonus-action move to allies.</li>
-      <li class="feature-description">Literally choreographing the fight.</li>
-      <li><strong>Enthralling Performance:</strong> Charm humanoids after a compelling performance.</li>
-      <li class="feature-description">Working a room after putting on a show.</li>
-      <li><strong>Mantle of Majesty (1/LR):</strong> Cast Command as a bonus action for 1 min.</li>
-      <li class="feature-description">Reserved for when Sol chooses to truly step into the spotlight.</li>
-      <li><strong>Unbreakable Majesty (1/SR):</strong> Gain otherworldly appearance, forcing attackers to target others on a failed save.</li>
-      <li class="feature-description">Your personal combat contingency.</li>
-      <li><strong>Magical Secrets (x2):</strong> Access spells from any class list (Bard 10 & 14).</li>
-      <li><strong>Cunning Action:</strong> Bonus action Dash, Disengage, or Hide. You are never trapped.</li>
-      <li><strong>Uncanny Dodge (Reaction):</strong> Halve damage from one hit. Calm under pressure.</li>
-      <li><strong>Evasion:</strong> No damage on successful Dex saves vs. effects that deal half damage. You outmaneuver everything.</li>
-      <li><strong>Sneak Attack (3d6):</strong> Extra damage when conditions are met. Nobody sees it coming.</li>
-      <li><strong>Song of Rest (d10):</strong> Allies regain extra 1d10 HP during short rests.</li>
-      <li><strong>Jack of All Trades:</strong> Add half proficiency bonus to any unproficient ability check. A tool for every situation.</li>
-    </ul>
-  </section>
+    <div class="aztec-divider">◆ ◇ ◆ DEATH SAVES ◆ ◇ ◆</div>
+    <div class="death-saves">
+      <div class="death-save-group">
+        <span class="ds-label">✓</span>
+        <div class="ds-dot success" onclick="toggleDS(this)" data-ds="s1"></div>
+        <div class="ds-dot success" onclick="toggleDS(this)" data-ds="s2"></div>
+        <div class="ds-dot success" onclick="toggleDS(this)" data-ds="s3"></div>
+      </div>
+      <div class="death-save-group">
+        <span class="ds-label">✗</span>
+        <div class="ds-dot fail" onclick="toggleDS(this)" data-ds="f1"></div>
+        <div class="ds-dot fail" onclick="toggleDS(this)" data-ds="f2"></div>
+        <div class="ds-dot fail" onclick="toggleDS(this)" data-ds="f3"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <section>
-    <h2>Spells Snapshot</h2>
-    <p><strong>Spell Slots:</strong> 1st: 4 | 2nd: 3 | 3rd: 3 | 4th: 3 | 5th: 2 | 6th: 1</p>
-    <ul>
-      <li><strong>Cantrips:</strong> Vicious Mockery, Minor Illusion, Mage Hand (AT), Prestidigitation, Message.</li>
-      <li><strong>Prepared Spells:</strong> Charm Person, Silvery Barbs, Suggestion, Invisibility, Mirror Image, Hypnotic Pattern, Dispel Magic, Major Image, Dimension Door, Phantasmal Killer, Modify Memory, Mislead, Counterspell, Tiny Hut, Seeming, Forcecage.</li>
-      <li class="spell-notes">Note: Specific prepared spells depend on daily choices, but these are common/powerful options. Magical Secrets allows access to spells from any class.</li>
-    </ul>
-  </section>
+<!-- ═══════ ABILITY SCORES ═══════ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>🎲 Ability Scores & Skills</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:1rem;">
+      Each ability has related skills listed below it. <span style="color:var(--gold);">★ Gold</span> = Expertise (double proficiency), <span style="color:var(--jade);">● Green</span> = Proficient, Gray = not proficient (but Jack of All Trades adds +2).
+    </p>
+    <div class="ability-grid">
+      <!-- STR -->
+      <div class="ability-card">
+        <div class="ability-name">Strength</div>
+        <div class="ability-score">13</div>
+        <div class="ability-mod">+1</div>
+        <div class="ability-skills">
+          Athletics +1
+          <br><span style="font-size:0.7rem;color:var(--text-muted)">Lifting, climbing, breaking things</span>
+        </div>
+      </div>
+      <!-- DEX -->
+      <div class="ability-card">
+        <div class="ability-name">Dexterity</div>
+        <div class="ability-score">20</div>
+        <div class="ability-mod">+5</div>
+        <div class="ability-skills">
+          <span class="skill-expert">★ Stealth +15</span><br>
+          <span class="skill-prof">● Acrobatics +10</span><br>
+          <span class="skill-prof">● Sleight of Hand +10</span>
+          <br><span style="font-size:0.7rem;color:var(--text-muted)">Agility, reflexes, balance, finesse</span>
+        </div>
+      </div>
+      <!-- CON -->
+      <div class="ability-card">
+        <div class="ability-name">Constitution</div>
+        <div class="ability-score">18</div>
+        <div class="ability-mod">+4</div>
+        <div class="ability-skills">
+          <span style="font-size:0.7rem;color:var(--text-muted)">No skills — but affects HP and concentration saves</span>
+        </div>
+      </div>
+      <!-- INT -->
+      <div class="ability-card">
+        <div class="ability-name">Intelligence</div>
+        <div class="ability-score">15</div>
+        <div class="ability-mod">+2</div>
+        <div class="ability-skills">
+          Arcana, History, Investigation, Nature, Religion +2
+          <br><span style="font-size:0.7rem;color:var(--text-muted)">Knowledge, memory, reasoning</span>
+        </div>
+      </div>
+      <!-- WIS -->
+      <div class="ability-card">
+        <div class="ability-name">Wisdom</div>
+        <div class="ability-score">15</div>
+        <div class="ability-mod">+2</div>
+        <div class="ability-skills">
+          <span class="skill-prof">● Insight +7</span><br>
+          <span class="skill-prof">● Perception +7</span><br>
+          Animal Handling, Medicine, Survival +2
+          <br><span style="font-size:0.7rem;color:var(--text-muted)">Awareness, intuition, reading people</span>
+        </div>
+      </div>
+      <!-- CHA -->
+      <div class="ability-card">
+        <div class="ability-name">Charisma</div>
+        <div class="ability-score">20</div>
+        <div class="ability-mod">+5</div>
+        <div class="ability-skills">
+          <span class="skill-expert">★ Deception +15</span><br>
+          <span class="skill-expert">★ Persuasion +15</span><br>
+          <span class="skill-expert">★ Performance +15</span><br>
+          Intimidation +5
+          <br><span style="font-size:0.7rem;color:var(--text-muted)">Charm, force of personality, social power</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <section>
-    <h2>Equipment</h2>
-    <ul>
-      <li><strong>Hat of Disguise ★ (Very Rare):</strong> Cast Disguise Self at will.</li>
-      <li><strong>Bag of Holding (Uncommon):</strong> Carries up to 500 lbs / 64 cu ft.</li>
-      <li>Studded Leather Armor (AC 17 with Dex)</li>
-      <li>Rapier + Hand Crossbow</li>
-      <li>Thieves' Tools</li>
-      <li>Healer's Kit</li>
-      <li>50 ft Hemp Rope</li>
-      <li>Journal, Ink & Quill</li>
-    </ul>
-  </section>
+<!-- ═══════ SAVING THROWS ═══════ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>🛡 Saving Throws</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem;">Saving throws = resisting effects. Filled dot = proficient. Bards get DEX & CHA saves.</p>
+    <div class="save-list">
+      <div class="save-item"><div class="dot"></div> Strength <span class="bonus">+1</span></div>
+      <div class="save-item"><div class="dot filled"></div> Dexterity <span class="bonus">+10</span></div>
+      <div class="save-item"><div class="dot"></div> Constitution <span class="bonus">+4</span></div>
+      <div class="save-item"><div class="dot"></div> Intelligence <span class="bonus">+2</span></div>
+      <div class="save-item"><div class="dot"></div> Wisdom <span class="bonus">+2</span></div>
+      <div class="save-item"><div class="dot filled"></div> Charisma <span class="bonus">+10</span></div>
+    </div>
+  </div>
+</div>
 
-  <section>
-    <h2>Skills & Proficiencies</h2>
-    <ul>
-      <li><strong>Expertise:</strong> Deception (+15), Persuasion (+15), Performance (+15), Stealth (+15)</li>
-      <li><strong>Proficient:</strong> Insight (+7), Perception (+7), Sleight of Hand (+10), Acrobatics (+10), Saving Throws: Dexterity (+10), Charisma (+10)</li>
-    </ul>
-  </section>
+<!-- ═══════ CLASS FEATURES ═══════ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>✨ Class Features</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
 
-  <section>
-    <h2>Backstory & Notes</h2>
-    <p>Solène Kvällsrén grew up performing, honing her innate elven gift for reading rooms and her human scrappiness. She excels at making events and nights go perfectly, naturally wielding glamour magic and rogue skills. Her motivation is to protect loved ones while pursuing freedom and adventure. She is uniquely suited for infiltrating the evil wizard's mansion, treating it as a complex event to manage, ready with her Bag of Holding and a face that could belong to anyone.</p>
-  </section>
+    <div class="aztec-divider">◆ BARD (College of Glamour) ◆</div>
+
+    <div class="feature-card">
+      <div class="feature-name">Bardic Inspiration (d10)</div>
+      <div class="feature-desc"><strong>Bonus action:</strong> Grant an ally a d10 to add to one ability check, attack roll, or saving throw within 10 minutes. Uses = Charisma modifier (5 per short/long rest).</div>
+      <div class="feature-flavor">"The event planner handing out exactly the right resource at the right moment."</div>
+      <div style="margin-top:6px;">
+        <span style="font-size:0.75rem;color:var(--gold);">Uses: </span>
+        <span class="slot-dot" onclick="toggleDS(this)" data-ds="bi1" style="width:16px;height:16px;display:inline-block;border:2px solid var(--gold);border-radius:50%;cursor:pointer;vertical-align:middle"></span>
+        <span class="slot-dot" onclick="toggleDS(this)" data-ds="bi2" style="width:16px;height:16px;display:inline-block;border:2px solid var(--gold);border-radius:50%;cursor:pointer;vertical-align:middle"></span>
+        <span class="slot-dot" onclick="toggleDS(this)" data-ds="bi3" style="width:16px;height:16px;display:inline-block;border:2px solid var(--gold);border-radius:50%;cursor:pointer;vertical-align:middle"></span>
+        <span class="slot-dot" onclick="toggleDS(this)" data-ds="bi4" style="width:16px;height:16px;display:inline-block;border:2px solid var(--gold);border-radius:50%;cursor:pointer;vertical-align:middle"></span>
+        <span class="slot-dot" onclick="toggleDS(this)" data-ds="bi5" style="width:16px;height:16px;display:inline-block;border:2px solid var(--gold);border-radius:50%;cursor:pointer;vertical-align:middle"></span>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Mantle of Inspiration</div>
+      <div class="feature-desc"><strong>Cost: 1 Bardic Inspiration.</strong> Up to 5 willing creatures within 60 ft gain temporary HP equal to your Bard level (10) and can immediately use their reaction to move up to their speed without provoking opportunity attacks.</div>
+      <div class="feature-flavor">"You are literally choreographing the fight."</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Enthralling Performance</div>
+      <div class="feature-desc"><strong>After performing for 1 minute:</strong> Choose up to 5 humanoids who watched. They must make a Wisdom save (DC 18) or be charmed. Lasts until end of your next long rest, they take damage, or you attack them. They don't know they were charmed when it ends (on a success, they do know you tried).</div>
+      <div class="feature-flavor">"Working a room after putting on a show."</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Mantle of Majesty <span style="color:var(--terracotta);font-size:0.75rem">(1/Long Rest)</span></div>
+      <div class="feature-desc"><strong>Bonus action:</strong> For 1 minute (concentration), you appear supernaturally beautiful. Each turn as a bonus action, you can cast <em>Command</em> without using a spell slot. Creatures already charmed by you automatically fail the save.</div>
+      <div class="feature-flavor">"Reserved for moments when Sol chooses to truly step into the spotlight."</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Unbreakable Majesty <span style="color:var(--terracotta);font-size:0.75rem">(1/Short Rest)</span></div>
+      <div class="feature-desc"><strong>Bonus action:</strong> Gain an otherworldly appearance for 1 minute. Any creature that attacks you must first succeed on a Charisma save (DC 18) or choose a different target. On a failed save, they also have disadvantage on saves against your spells until the end of your next turn.</div>
+      <div class="feature-flavor">"Your personal combat contingency."</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Magical Secrets (×2)</div>
+      <div class="feature-desc">At Bard levels 10 and 14, choose 2 spells from <em>any class's</em> spell list. They count as Bard spells for you. This is how Sol has Counterspell, Tiny Hut, Seeming, and Forcecage.</div>
+      <div class="feature-flavor">"The ultimate utility player feature."</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Song of Rest (d10)</div>
+      <div class="feature-desc">During a short rest, if any friendly creatures spend Hit Dice to regain HP, they each regain an extra <strong>1d10 HP</strong>. No action required — just your presence helping.</div>
+      <div class="feature-flavor">"You create safety and restoration in your presence."</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Jack of All Trades</div>
+      <div class="feature-desc">Add <strong>+2</strong> (half your proficiency bonus) to any ability check that doesn't already include your proficiency bonus. This also applies to initiative!</div>
+      <div class="feature-flavor">"A tool for every situation, always."</div>
+    </div>
+
+    <div class="aztec-divider">◆ ROGUE (Arcane Trickster) ◆</div>
+
+    <div class="feature-card">
+      <div class="feature-name">Sneak Attack (3d6)</div>
+      <div class="feature-desc"><strong>Once per turn:</strong> Deal an extra 3d6 damage when you hit with a finesse or ranged weapon AND either (a) you have advantage on the attack, or (b) an ally is within 5 ft of the target and you don't have disadvantage.</div>
+      <div class="feature-flavor">"Nobody sees it coming."</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Cunning Action</div>
+      <div class="feature-desc"><strong>Bonus action:</strong> Dash (double movement), Disengage (move without provoking opportunity attacks), or Hide (make a Stealth check to become hidden).</div>
+      <div class="feature-flavor">"You always have an exit or an angle. You are never trapped."</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Uncanny Dodge <span style="color:var(--terracotta);font-size:0.75rem">(Reaction)</span></div>
+      <div class="feature-desc"><strong>Reaction:</strong> When an attacker you can see hits you, halve the attack's damage against you.</div>
+      <div class="feature-flavor">"Calm under pressure."</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Evasion</div>
+      <div class="feature-desc">When you make a Dexterity saving throw against an effect that deals half damage on a success (like Fireball): <strong>success = zero damage</strong>, failure = half damage instead of full.</div>
+      <div class="feature-flavor">"You outmaneuver everything."</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-name">Mage Hand Legerdemain</div>
+      <div class="feature-desc">Your Mage Hand is <strong>invisible</strong> and can stow/retrieve objects from containers, use thieves' tools to pick locks/disarm traps at range, all as a bonus action.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════ SPELL SLOTS ═══════ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>📖 Spell Slots & Spells</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:1rem;">
+      Tap a circle to mark a spell slot as <strong>used</strong>. Tap a spell to expand its description. Slots reset on a long rest.
+    </p>
+
+    <div class="spell-slots-grid">
+      <div class="slot-group">
+        <div class="slot-level">1st</div>
+        <div class="slot-dots">
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="1-1"></div>
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="1-2"></div>
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="1-3"></div>
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="1-4"></div>
+        </div>
+      </div>
+      <div class="slot-group">
+        <div class="slot-level">2nd</div>
+        <div class="slot-dots">
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="2-1"></div>
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="2-2"></div>
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="2-3"></div>
+        </div>
+      </div>
+      <div class="slot-group">
+        <div class="slot-level">3rd</div>
+        <div class="slot-dots">
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="3-1"></div>
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="3-2"></div>
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="3-3"></div>
+        </div>
+      </div>
+      <div class="slot-group">
+        <div class="slot-level">4th</div>
+        <div class="slot-dots">
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="4-1"></div>
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="4-2"></div>
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="4-3"></div>
+        </div>
+      </div>
+      <div class="slot-group">
+        <div class="slot-level">5th</div>
+        <div class="slot-dots">
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="5-1"></div>
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="5-2"></div>
+        </div>
+      </div>
+      <div class="slot-group">
+        <div class="slot-level">6th</div>
+        <div class="slot-dots">
+          <div class="slot-dot" onclick="toggleSlot(this)" data-slot="6-1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CANTRIPS -->
+    <div class="spell-level-group">
+      <div class="spell-level-title">Cantrips (at will)</div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Vicious Mockery <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">Enchantment cantrip · V · 60 ft · Instant</div>
+          You hurl a string of insults laced with subtle enchantments. Target makes a <strong>Wisdom save (DC 18)</strong> or takes <strong>3d4 psychic damage</strong> and has <strong>disadvantage on its next attack roll</strong>. No material components — just your words.
+          <div class="spell-flavor">"Protecting allies by neutering threats with a well-placed insult."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Minor Illusion <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">Illusion cantrip · S, M · 30 ft · 1 minute</div>
+          Create a <strong>sound</strong> or an <strong>image</strong> of an object (no larger than 5 ft cube) for 1 minute. Creatures can use an action to make an Investigation check (DC 18) to determine it's an illusion.
+          <div class="spell-flavor">"Draw guards away, confirm what's behind a door, buy time."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Mage Hand <span class="spell-tag">Arcane Trickster</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">Conjuration cantrip · V, S · 30 ft · 1 minute</div>
+          Create an <strong>invisible</strong> spectral hand (Arcane Trickster feature). Can manipulate objects, open doors, stow/retrieve from containers, pick locks, and disarm traps at range. Use a <strong>bonus action</strong> to control it.
+          <div class="spell-flavor">"Your invisible assistant for pickpocketing and remote trap work."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Prestidigitation <span class="spell-tag">Arcane Trickster</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">Transmutation cantrip · V, S · 10 ft · Up to 1 hour</div>
+          A minor magical trick: light/snuff a candle, clean or soil an object, chill/warm/flavor material, create a small sensory effect, create a trinket or illusory image that fits in your hand. Up to 3 effects active at once.
+          <div class="spell-flavor">"Clean a costume, forge a prop, maintain a cover. Your event prep kit."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Message <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">Transmutation cantrip · V, S, M · 120 ft · 1 round</div>
+          Whisper a message to a creature within 120 ft. Only the target hears it and can whisper a reply. Can pass through solid objects if you know the target is there. Blocked by 3+ ft of stone, 1 inch of metal, or thin lead.
+          <div class="spell-flavor">"Coordinating the crew across the mansion."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1ST LEVEL -->
+    <div class="spell-level-group">
+      <div class="spell-level-title">1st Level</div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Healing Word <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">1st-level Evocation · V · 60 ft · Bonus Action · Instant</div>
+          A creature you can see within 60 ft regains <strong>1d4 + CHA mod (5) HP</strong>. <strong>Bonus action</strong> — leaves your action free for attacks or other spells. Upcasting: +1d4 per slot level above 1st.
+          <div class="spell-flavor">"Keeps allies up without burning your action. The protector in you."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Charm Person <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">1st-level Enchantment · V, S · 30 ft · 1 Action · 1 hour</div>
+          Target humanoid makes a <strong>Wisdom save (DC 18)</strong> — advantage if you or allies are fighting it. On a fail, it's <strong>charmed</strong> by you (regards you as a friendly acquaintance). When the spell ends, it knows it was charmed. Upcast: +1 additional target per slot level.
+          <div class="spell-flavor">"Your instinct when caught — make that guard your temporary best friend."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Unseen Servant <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">1st-level Conjuration (Ritual) · V, S, M · 60 ft · 1 Action · 1 hour</div>
+          Create an invisible, mindless force that serves you. It can perform simple tasks: fetch things, clean, mend, fold, open doors. STR 2, can't attack or take damage. Moves 15 ft/turn. Can be cast as a ritual (no spell slot!).
+          <div class="spell-flavor">"Sol showed up with staff."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Silvery Barbs <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">1st-level Enchantment · V · 60 ft · Reaction · Instant</div>
+          <strong>Reaction</strong> (when a creature you can see within 60 ft succeeds on an attack, ability check, or save): Force it to <strong>reroll and use the lower result</strong>. Then choose a creature you can see — it gets <strong>advantage on its next attack, ability check, or save within 1 minute</strong>. Widely considered the best 1st-level spell in 5e.
+          <div class="spell-flavor">"Pure contingency planning."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2ND LEVEL -->
+    <div class="spell-level-group">
+      <div class="spell-level-title">2nd Level</div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Suggestion <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">2nd-level Enchantment · V, M · 30 ft · 1 Action · Concentration, 8 hours</div>
+          Suggest a reasonable-sounding course of activity (one or two sentences) to a creature that can hear and understand you. <strong>Wisdom save (DC 18)</strong> or it pursues the suggestion for up to 8 hours. The suggestion must sound reasonable — "go jump off a cliff" won't work, but "the guards down the hall look suspicious" will.
+          <div class="spell-flavor">"'You should go check the east wing.'"</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Invisibility <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">2nd-level Illusion · V, S, M · Touch · 1 Action · Concentration, 1 hour</div>
+          A creature you touch becomes <strong>invisible</strong> for up to 1 hour. Everything they're wearing/carrying is also invisible. Ends if the target attacks or casts a spell. Upcast: +1 target per slot level above 2nd.
+          <div class="spell-flavor">"Primary scouting and escape tool. Go unseen, gather intel, slip out."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Mirror Image <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">2nd-level Illusion · V, S · Self · 1 Action · 1 minute</div>
+          Three illusory duplicates appear in your space. Each time a creature targets you with an attack, roll to see if it hits a duplicate instead (3 duplicates = hits duplicate on 6+, 2 = 8+, 1 = 11+). Each duplicate has AC 15 and is destroyed by one hit. <strong>Not concentration!</strong>
+          <div class="spell-flavor">"Your personal combat contingency."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3RD LEVEL -->
+    <div class="spell-level-group">
+      <div class="spell-level-title">3rd Level</div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Hypnotic Pattern <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">3rd-level Illusion · S, M · 120 ft · 1 Action · Concentration, 1 minute</div>
+          A twisting pattern of colors fills a <strong>30-ft cube</strong> within range. Each creature in the area makes a <strong>Wisdom save (DC 18)</strong> or becomes <strong>charmed, incapacitated, and speed drops to 0</strong> for the duration. Effect ends on a creature if it takes damage or another creature uses an action to shake it awake.
+          <div class="spell-flavor">"Shut down an entire room simultaneously."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Dispel Magic <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">3rd-level Abjuration · V, S · 120 ft · 1 Action · Instant</div>
+          Choose one creature, object, or magical effect within range. Any spell of <strong>3rd level or lower</strong> on it ends. For higher-level spells, make an ability check (DC = 10 + spell's level) using your spellcasting ability (+10 total).
+          <div class="spell-flavor">"This dismantles the wizard's enchantments — locks, barriers, guards."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Major Image <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">3rd-level Illusion · V, S, M · 120 ft · 1 Action · Concentration, 10 minutes</div>
+          Create an image no larger than a <strong>20-ft cube</strong> with sound, smell, and temperature. It seems perfectly real. You can use your action to move/change it. Physical interaction reveals it as an illusion. Investigation check (DC 18) to identify it visually.
+          <div class="spell-flavor">"A whole false reality."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4TH LEVEL -->
+    <div class="spell-level-group">
+      <div class="spell-level-title">4th Level</div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Dimension Door <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">4th-level Conjuration · V · 500 ft · 1 Action · Instant</div>
+          Teleport to any spot within <strong>500 feet</strong>. You can describe the destination or state direction + distance. You can bring along <strong>one willing creature</strong> of your size or smaller (they must be within 5 ft). If you'd arrive in an occupied space, you both take 4d6 force damage and the spell fails.
+          <div class="spell-flavor">"Your primary escape route. You always know the exit."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Phantasmal Killer <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">4th-level Illusion · V, S · 120 ft · 1 Action · Concentration, 1 minute</div>
+          Target a creature you can see. It makes a <strong>Wisdom save (DC 18)</strong> or becomes <strong>frightened</strong>. At the end of each of its turns, it must succeed on a Wisdom save or take <strong>4d10 psychic damage</strong>. On a success, the spell ends. Only the target can see the illusion.
+          <div class="spell-flavor">"Invisible, untraceable psychic torment."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5TH LEVEL -->
+    <div class="spell-level-group">
+      <div class="spell-level-title">5th Level</div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Modify Memory <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">5th-level Enchantment · V, S · 30 ft · 1 Action · Concentration, 1 minute</div>
+          Target must make a <strong>Wisdom save (DC 18)</strong>. On fail, it's charmed and incapacitated. You can reshape <strong>up to 10 minutes</strong> of its memories from the last 24 hours — eliminate, change, or create memories. The creature fills in gaps naturally. Upcast: memories from further back (6th = 7 days, 7th = 1 year, 8th = any time, 9th = any time and can't be restored without Wish).
+          <div class="spell-flavor">"Charm the guard, then clean up the evidence."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Mislead <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">5th-level Illusion · S · Self · 1 Action · Concentration, 1 hour</div>
+          You become <strong>invisible</strong> and an illusory double appears where you stood. You can use your action to move the double (up to double your speed) and make it gesture, speak, and behave however you choose. You can see through its eyes and hear through its ears (switching costs your action). The invisibility ends if you attack or cast a spell.
+          <div class="spell-flavor">"Scout two places at once."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6TH LEVEL -->
+    <div class="spell-level-group">
+      <div class="spell-level-title">6th Level</div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Mass Suggestion <span class="spell-tag">Bard</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">6th-level Enchantment · V, M · 60 ft · 1 Action · 24 hours</div>
+          Suggest a reasonable course of activity to <strong>up to 12 creatures</strong> you can see. Each must make a <strong>Wisdom save (DC 18)</strong> or pursue the suggestion for <strong>24 hours</strong>. No concentration! Upcast: 7th = 10 days, 8th = 30 days, 9th = 1 year + 1 day.
+          <div class="spell-flavor">"Walk into the ballroom and bend the whole room."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAGICAL SECRETS -->
+    <div class="spell-level-group">
+      <div class="spell-level-title">★ Magical Secrets (stolen from other classes)</div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Counterspell <span class="spell-tag">★ Secret (Wizard)</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">3rd-level Abjuration · S · 60 ft · Reaction · Instant</div>
+          <strong>Reaction</strong> (when you see a creature within 60 ft casting a spell): If the spell is 3rd level or lower, it fails automatically. If it's higher level, make an ability check: DC = 10 + the spell's level, using your spellcasting modifier (+10). Upcast: automatically counters spells of that slot level or lower.
+          <div class="spell-flavor">"The wizard tries something clever. Sol says no."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Leomund's Tiny Hut <span class="spell-tag">★ Secret (Wizard)</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">3rd-level Evocation (Ritual) · V, S, M · Self (10-ft hemisphere) · 1 minute · 8 hours</div>
+          A 10-ft dome of force surrounds you. Up to <strong>9 Medium creatures</strong> can fit inside. <strong>Nothing</strong> can pass through the dome from outside — no attacks, spells, weather, or creatures. Creatures inside can move freely through it. You control the light and temperature inside. Can be cast as a ritual (no spell slot!).
+          <div class="spell-flavor">"The event planner sets up a safe room anywhere."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Seeming <span class="spell-tag">★ Secret (Bard/Wizard)</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">5th-level Illusion · V, S · 30 ft · 1 Action · 8 hours</div>
+          Disguise any number of creatures you can see within 30 ft. Each target's appearance changes — height, weight, clothing, armor, weapons, even race. Unwilling targets get a <strong>Charisma save (DC 18)</strong>. An Investigation check (DC 18) reveals the illusion. Lasts <strong>8 hours, no concentration</strong>.
+          <div class="spell-flavor">"Everyone walks in as someone else. One cast, whole crew."</div>
+        </div>
+      </div>
+
+      <div class="spell-card" onclick="toggleSpell(this)">
+        <div class="spell-name">Forcecage <span class="spell-tag">★ Secret (Wizard)</span></div>
+        <div class="spell-details">
+          <div class="spell-meta">7th-level Evocation · V, S, M (1,500 gp ruby dust) · 100 ft · 1 Action · 1 hour</div>
+          Create an immobile, invisible, cube-shaped prison of force (up to 10 ft or 20 ft). <strong>Nothing can pass through</strong> — not teleportation (Charisma save DC 18 to teleport out), not physical force, not most spells. No concentration, lasts 1 hour. Expensive material component (1,500 gp ruby dust, consumed).
+          <div class="spell-flavor">"The wizard simply... can't leave."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ EQUIPMENT ═══════ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>🎒 Equipment & Magic Items</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+    <div class="equip-item">
+      <span class="equip-icon">🎩</span>
+      <div>
+        <div class="equip-name">Hat of Disguise <span class="equip-rarity">Very Rare ★</span></div>
+        <div class="equip-desc">Cast <em>Disguise Self</em> at will, no spell slot needed. Change your appearance at any time — height, weight, facial features, clothing. Lasts until you dismiss it or use it again. Physical inspection (Investigation DC 13) can reveal it.</div>
+      </div>
+    </div>
+    <div class="equip-item">
+      <span class="equip-icon">👜</span>
+      <div>
+        <div class="equip-name">Bag of Holding <span class="equip-rarity">Uncommon</span></div>
+        <div class="equip-desc">Interior is 64 cubic feet / 500 lbs capacity. Always weighs 15 lbs regardless of contents. Retrieving an item requires an action. If overloaded, pierced, or turned inside out, contents spill into the Astral Plane.</div>
+      </div>
+    </div>
+    <div class="equip-item">
+      <span class="equip-icon">🛡</span>
+      <div>
+        <div class="equip-name">Studded Leather Armor</div>
+        <div class="equip-desc">Light armor. AC = 12 + DEX modifier (17 total). No stealth disadvantage. The practical choice for a character who needs to stay quiet and agile.</div>
+      </div>
+    </div>
+    <div class="equip-item">
+      <span class="equip-icon">⚔️</span>
+      <div>
+        <div class="equip-name">Rapier</div>
+        <div class="equip-desc">1d8 + 5 piercing damage. Finesse (uses DEX instead of STR). Your primary melee weapon — elegant and precise.</div>
+      </div>
+    </div>
+    <div class="equip-item">
+      <span class="equip-icon">🏹</span>
+      <div>
+        <div class="equip-name">Hand Crossbow</div>
+        <div class="equip-desc">1d6 + 5 piercing damage. Range: 30/120 ft. Light, one-handed. Good for ranged Sneak Attacks when you can't close distance.</div>
+      </div>
+    </div>
+    <div class="equip-item">
+      <span class="equip-icon">🔧</span>
+      <div>
+        <div class="equip-name">Thieves' Tools</div>
+        <div class="equip-desc">Pick locks and disarm traps. Proficient as Rogue. Dexterity check + proficiency bonus (+10 total). Your multitool equivalent.</div>
+      </div>
+    </div>
+    <div class="equip-item">
+      <span class="equip-icon">💊</span>
+      <div>
+        <div class="equip-name">Healer's Kit (10 uses)</div>
+        <div class="equip-desc">Stabilize a dying creature without needing a Medicine check. Your emergency first-aid kit.</div>
+      </div>
+    </div>
+    <div class="equip-item">
+      <span class="equip-icon">🪢</span>
+      <div>
+        <div class="equip-name">50 ft Hemp Rope</div>
+        <div class="equip-desc">The D&D equivalent of duct tape. Climbing, tying up enemies, creating makeshift bridges — always useful.</div>
+      </div>
+    </div>
+    <div class="equip-item">
+      <span class="equip-icon">📓</span>
+      <div>
+        <div class="equip-name">Journal, Ink & Quill</div>
+        <div class="equip-desc">For plans, poems, event logistics, and things that must be remembered.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ BACKSTORY ═══════ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>📜 Backstory & Character</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+    <div class="backstory-text">
+      <p><strong>Origin:</strong> Born to a human father and an elven mother, Solène grew up performing before she ever understood what performance meant — street corners before stages, humming before lyrics, moving before she could name it as dance. The elvish half gave her a gift for reading rooms that felt almost supernatural (it was). The human half gave her hunger, scrappiness, and the refusal to wait for doors to open.</p>
+
+      <p style="margin-top:0.75rem"><strong>The Work:</strong> She formalized her gift over years — music, poetry, dance, theater, the logistics of bringing people together for something that mattered. She became someone people called when they needed a night to go perfectly. The glamour magic came naturally; she had been doing it without spells for years. The rogue skills came from navigating a world that doesn't always reward the talented the way it should.</p>
+
+      <p style="margin-top:0.75rem"><strong>The Name:</strong> Solène Kvällsrén — "evening reborn." Most people call her Sol. She introduces herself as <em>Solène</em> when she needs the room to understand exactly who they're dealing with.</p>
+
+      <div class="quote-block">
+        "The sun that doesn't always show itself — but when it does, everyone notices."
+      </div>
+
+      <p><strong>Motivation:</strong> She protects the people she loves fiercely and without hesitation. But she is also pulled toward freedom, toward seeing what's over the next horizon, toward adventure for its own sake. These two drives live in tension and in harmony inside her.</p>
+
+      <p style="margin-top:0.75rem"><strong>For This Quest:</strong> Infiltrating an evil wizard's mansion is, frankly, the kind of problem Sol was built for. An event with moving parts, guests to manage, a host to outmaneuver, and a very specific outcome to engineer. She showed up with a bag containing everything she might need and a face that could belong to anyone in the room.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ NOTES ═══════ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2>📝 Session Notes</h2>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="section-body">
+    <textarea class="notes-area" id="sessionNotes" placeholder="Jot down notes during your session..." oninput="saveState()"></textarea>
+  </div>
+</div>
+
+<!-- ═══════ RESET ═══════ -->
+<div class="reset-bar">
+  <button class="reset-btn" onclick="longRest()">☾ Long Rest (Reset All)</button>
+</div>
+
+<div class="footer">
+  Solène Kvällsrén · Character Sheet · D&D 5th Edition
+</div>
+
+</div><!-- /container -->
+
+<script>
+// ═══════════════════════════════════════════
+// INTERACTIVITY & LOCAL STORAGE
+// ═══════════════════════════════════════════
+
+const STORAGE_KEY = 'sol-character-sheet';
+
+function getState() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  } catch { return {}; }
+}
+
+function saveState() {
+  const state = {
+    currentHP: document.getElementById('currentHP').value,
+    maxHP: document.getElementById('maxHP').value,
+    tempHP: document.getElementById('tempHP').value,
+    notes: document.getElementById('sessionNotes').value,
+    slots: {},
+    deathSaves: {},
+    collapsed: []
+  };
+
+  // Spell slots
+  document.querySelectorAll('.slot-dot').forEach(dot => {
+    if (dot.dataset.slot) state.slots[dot.dataset.slot] = dot.classList.contains('used');
+  });
+
+  // Death saves & bardic inspiration dots
+  document.querySelectorAll('[data-ds]').forEach(dot => {
+    state.deathSaves[dot.dataset.ds] = dot.classList.contains('filled');
+  });
+
+  // Collapsed sections
+  document.querySelectorAll('.section.collapsed').forEach((sec, i) => {
+    const h2 = sec.querySelector('h2');
+    if (h2) state.collapsed.push(h2.textContent.trim());
+  });
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function loadState() {
+  const state = getState();
+  if (state.currentHP) document.getElementById('currentHP').value = state.currentHP;
+  if (state.maxHP) document.getElementById('maxHP').value = state.maxHP;
+  if (state.tempHP) document.getElementById('tempHP').value = state.tempHP;
+  if (state.notes) document.getElementById('sessionNotes').value = state.notes;
+
+  if (state.slots) {
+    Object.entries(state.slots).forEach(([key, used]) => {
+      const dot = document.querySelector(`[data-slot="${key}"]`);
+      if (dot && used) dot.classList.add('used');
+    });
+  }
+
+  if (state.deathSaves) {
+    Object.entries(state.deathSaves).forEach(([key, filled]) => {
+      const dot = document.querySelector(`[data-ds="${key}"]`);
+      if (dot && filled) dot.classList.add('filled');
+    });
+  }
+
+  if (state.collapsed) {
+    document.querySelectorAll('.section').forEach(sec => {
+      const h2 = sec.querySelector('h2');
+      if (h2 && state.collapsed.includes(h2.textContent.trim())) {
+        sec.classList.add('collapsed');
+      }
+    });
+  }
+}
+
+// Toggle section collapse
+function toggleSection(header) {
+  header.closest('.section').classList.toggle('collapsed');
+  saveState();
+}
+
+// Toggle spell slot
+function toggleSlot(dot) {
+  dot.classList.toggle('used');
+  saveState();
+}
+
+// Toggle death save / bardic inspiration dot
+function toggleDS(dot) {
+  dot.classList.toggle('filled');
+  saveState();
+}
+
+// Adjust HP
+function adjustHP(delta) {
+  const input = document.getElementById('currentHP');
+  let val = parseInt(input.value) || 0;
+  val += delta;
+  if (val < 0) val = 0;
+  const max = parseInt(document.getElementById('maxHP').value) || 127;
+  if (val > max) val = max;
+  input.value = val;
+  saveState();
+}
+
+// Expand/collapse spell card
+function toggleSpell(card) {
+  card.classList.toggle('expanded');
+}
+
+// Long rest reset
+function longRest() {
+  if (!confirm('Take a Long Rest? This resets HP, spell slots, death saves, Bardic Inspiration, and limited-use features.')) return;
+
+  const maxHP = document.getElementById('maxHP').value;
+  document.getElementById('currentHP').value = maxHP;
+  document.getElementById('tempHP').value = 0;
+
+  document.querySelectorAll('.slot-dot').forEach(d => d.classList.remove('used'));
+  document.querySelectorAll('[data-ds]').forEach(d => d.classList.remove('filled'));
+
+  saveState();
+}
+
+// Load on page ready
+document.addEventListener('DOMContentLoaded', loadState);
+</script>
+
 </body>
 </html>
